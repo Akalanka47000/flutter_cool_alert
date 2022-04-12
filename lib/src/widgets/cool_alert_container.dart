@@ -5,6 +5,7 @@ import 'package:cool_alert/src/utils/single_loop_controller.dart';
 import 'package:cool_alert/src/widgets/cool_alert_buttons.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class CoolAlertContainer extends StatelessWidget {
@@ -27,7 +28,7 @@ class CoolAlertContainer extends StatelessWidget {
       padding: EdgeInsets.all(20.0),
       child: Column(
         children: [
-          _title,
+          //_title,
           SizedBox(
             height: 5.0,
           ),
@@ -36,7 +37,7 @@ class CoolAlertContainer extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          _buttons
+          options!.showButtons?_buttons:Container()
         ],
       ),
     );
@@ -88,23 +89,26 @@ class CoolAlertContainer extends StatelessWidget {
             topRight: Radius.circular(options!.borderRadius!),
           ),
         ),
-        child: Container(
-          height: 150,
-          width: 150,
-          child: options!.lottieAsset == null
-              ? FlareActor(
-                  anim,
-                  animation: options!.loopAnimation
-                      ? options!.flareAnimationName
-                      : null,
-                  controller: options!.loopAnimation
-                      ? null
-                      : SingleLoopController(
-                          options!.flareAnimationName!,
-                          1,
-                        ),
-                )
-              : Lottie.asset(options!.lottieAsset!),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+          child: Container(
+            height: options!.iconHeight,
+            width: 150,
+            child: options!.lottieAsset == null
+                ? FlareActor(
+                    anim,
+                    animation: options!.loopAnimation
+                        ? options!.flareAnimationName
+                        : null,
+                    controller: options!.loopAnimation
+                        ? null
+                        : SingleLoopController(
+                            options!.flareAnimationName!,
+                            1,
+                          ),
+                  )
+                : Lottie.asset(options!.lottieAsset!),
+          ),
         ),
       );
     }
@@ -147,9 +151,15 @@ class CoolAlertContainer extends StatelessWidget {
       } else {
         text = options!.text;
       }
-      return Text(
-        text ?? '',
-        textAlign: TextAlign.center,
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+        child: Text(
+          text ?? '',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.w500),
+          ),
+        ),
       );
     }
   }
