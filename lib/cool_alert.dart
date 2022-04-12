@@ -91,6 +91,12 @@ class CoolAlert {
 
     /// Detemines if the animation loops or not
     bool loopAnimation = false,
+
+    ///Determines the height of the animation
+    double iconHeight = 140,
+
+    /// Detemines if the buttons are shown or not
+    bool showButtons = false,
   }) {
     if (autoCloseDuration != null) {
       Future.delayed(autoCloseDuration, () {
@@ -120,6 +126,8 @@ class CoolAlert {
       lottieAsset: lottieAsset,
       width: width,
       loopAnimation: loopAnimation,
+      iconHeight:iconHeight,
+      showButtons:showButtons,
     );
 
     final child = AlertDialog(

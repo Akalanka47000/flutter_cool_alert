@@ -17,8 +17,8 @@ class CoolAlertButtons extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _cancelBtn(context),
           _okayBtn(context),
+          _cancelBtn(context),
         ],
       ),
     );
